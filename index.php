@@ -22,3 +22,4 @@ switch ($request) {
         echo '404 not found';
         break;
 }
+?>
