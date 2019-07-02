@@ -12,11 +12,11 @@ switch ($request) {
     case '' :
         echo $request;
         break;
-    case '/cars' :
-        Car::show();
+    case '/car-form' :
+        require __DIR__ . '/views/car-form.php';
         break;
-    case '/booking' :
-        echo $request;
+    case '/booking-form' :
+        require __DIR__ . '/views/booking-form.php';
         break;
     default:
         echo '404 not found';
