@@ -1,9 +1,24 @@
 <?php
 
-require_once('Routes.php');
+require_once('classes/Car.php');
 
+$request = str_replace("/rentals", "",  $_SERVER["REQUEST_URI"]);
 
-function __autoload($class_name) {
-  require_once './classes/'.$class_name.'.php';
+switch ($request) {
+    case '/' :
+        $var = 'test';
+        Car::index($var);
+        break;
+    case '' :
+        echo $request;
+        break;
+    case '/cars' :
+        Car::show();
+        break;
+    case '/booking' :
+        echo $request;
+        break;
+    default:
+        echo '404 not found';
+        break;
 }
-?>
