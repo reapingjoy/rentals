@@ -9,7 +9,7 @@
 <div class="container">
 <h2>Booking Form</h2>
 
-<form action="/action_page.php">
+<form action="/rentals/bookings/create" method="post">
   Rental Start:<br>
   <input type="date" name="booked_from" value="">
   <br>

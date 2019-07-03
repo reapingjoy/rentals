@@ -2,12 +2,12 @@
 
 class Booking {
 
-  public function index($var){
-    echo $var;
+  public function create(){
+    print_r($_POST['booked_from']);
   }
 
-  public function show(){
-    echo "Nedko Booking";
+  public function checkAvailability(){
+    
   }
 
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once('classes/Car.php');
+require_once('classes/Booking.php');
 require_once('config/db_config.php');
 
 $request = str_replace("/rentals", "",  $_SERVER["REQUEST_URI"]);
@@ -16,7 +17,7 @@ switch ($request) {
         break;
 
 // Car routes
-    case '/cars/create' :
+    case '/cars/form' :
         $brands = Car::index();
         require __DIR__ . '/views/car-form.php';
         break;
@@ -38,8 +39,11 @@ switch ($request) {
         break;
 
 // Booking routes
-    case '/bookings/create' :
+    case '/bookings/form' :
         require __DIR__ . '/views/booking-form.php';
+        break;
+    case '/bookings/create' :
+        Booking::create();
         break;
     case '/bookings/show' :
         echo $request;
