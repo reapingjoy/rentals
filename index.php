@@ -1,7 +1,11 @@
 <?php
 
-require_once('classes/Car.php');
-require_once('classes/Booking.php');
+spl_autoload_register(function ($class_name) {
+  include './classes/'.$class_name.'.php';
+});
+
+// require_once('classes/Car.php');
+// require_once('classes/Booking.php');
 require_once('config/db_config.php');
 
 $request = str_replace("/rentals", "",  $_SERVER["REQUEST_URI"]);
