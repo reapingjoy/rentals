@@ -67,6 +67,11 @@ switch ($request) {
     case '/bookings/list' :
         echo $request;
         break;
+    case '/bookings/workdays' :
+        $startDate = '2019-07-08';
+        $endDate = '2019-07-22';
+        Booking::getWorkingDays($startDate, $endDate);
+        break;
 
 // Price Plans routes
     case '/price-plans/create' :
