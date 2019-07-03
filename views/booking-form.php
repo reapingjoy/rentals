@@ -18,10 +18,11 @@
   <br>
   Car:<br>
   <select name="cars">
-  <option value="volvo">Volvo</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
+  <?php
+    foreach($cars as $car){
+    echo  '<option value="'.$car['id'].'">'.$car['car_short'].'</option>';
+    }
+  ?>
   </select>
   <br>
   <input type="submit" value="Search">

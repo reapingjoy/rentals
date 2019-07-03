@@ -35,7 +35,7 @@ switch ($request) {
         echo $request;
         break;
     case '/cars/list' :
-        echo $request;
+        Car::getAllCars();
         break;
 
     case '/brands/list' :
@@ -44,6 +44,7 @@ switch ($request) {
 
 // Booking routes
     case '/bookings/form' :
+        $cars = Car::getAllCars();
         require __DIR__ . '/views/booking-form.php';
         break;
     case '/bookings/create' :
