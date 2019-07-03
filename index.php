@@ -6,17 +6,19 @@ $request = str_replace("/rentals", "",  $_SERVER["REQUEST_URI"]);
 
 switch ($request) {
     case '/' :
-        $var = 'test';
-        Car::index($var);
+        require __DIR__ . '/views/home.php';
         break;
     case '' :
-        echo $request;
+        require __DIR__ . '/views/home.php';
         break;
-    case '/car-form' :
+    case '/car/create' :
         require __DIR__ . '/views/car-form.php';
         break;
-    case '/booking-form' :
+    case '/booking/create' :
         require __DIR__ . '/views/booking-form.php';
+        break;
+    case '/reports' :
+        require __DIR__ . '/views/reports.php';
         break;
     default:
         echo '404 not found';
