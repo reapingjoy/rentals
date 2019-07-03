@@ -2,11 +2,11 @@
 
 class Booking {
 
-  public function create(){
+  public function create() {
     print_r($_POST['booked_from']);
   }
 
-  public function checkAvailability(){
+  public function checkAvailability() {
     
   }
 
@@ -29,7 +29,25 @@ class Booking {
     }
     echo $days;
     return $days;
-}
+  }
+
+  public function checkTotal($workdays) {
+
+    $db = new DB();
+    $sql = "SELECT * FROM price_plan
+    WHERE ? BETWEEN price_plan.rent_interval_start AND price_plan.rent_interval_end";
+
+    if(!$db->prepare($sql, 'i')){
+      throw new \Exception($db->error);  
+    }
+    
+    $price_plan = $db->execute_select([$workdays]);
+    
+    $total = $price_plan[0]['price'] * $workdays;
+
+    echo $total;
+    return $total;
+  }
 
 
 }

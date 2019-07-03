@@ -10,7 +10,7 @@
 <div class="container">
 <h2>Booking Form</h2>
 
-<form action="/rentals/bookings/workdays" method="post">
+<form action="/rentals/bookings/check-total" method="post">
   Rental Start:<br>
   <input type="date" name="booked_from" value="">
   <br>

@@ -72,6 +72,10 @@ switch ($request) {
         $endDate = '2019-07-22';
         Booking::getWorkingDays($startDate, $endDate);
         break;
+        case '/bookings/check-total' :
+        $workdays = 2;
+        Booking::checkTotal($workdays);
+        break;
 
 // Price Plans routes
     case '/price-plans/create' :
