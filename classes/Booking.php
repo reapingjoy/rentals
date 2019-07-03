@@ -6,9 +6,24 @@ class Booking {
     print_r($_POST['booked_from']);
   }
 
-  public function checkAvailability() {
-    
-  }
+  public function checkAvailability($booked_from, $booked_to, $car_id) {
+
+    $db = new DB();
+    $sql = "SELECT booking.id FROM booking
+    WHERE NOT EXIST (
+    SELECT * FROM booking
+    WHERE booking.car_id = ?
+    AND ? <= booking.booked_to
+    AND ? >= booking.booked_from )
+    AND booking.car_id = ? ";
+
+    if(!$db->prepare($sql, 'i')){
+      throw new \Exception($db->error);  
+    }
+
+    $availability = $db->execute_select([$car_id,$booked_from,$booked_to,$car_id]);
+
+    }
 
   public function getWorkingDays($from, $to) {
     $workingDays = [1, 2, 3, 4, 5];
