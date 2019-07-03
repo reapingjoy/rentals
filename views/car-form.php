@@ -4,6 +4,12 @@
 
 <h2>Add New Car</h2>
 
+<?php
+echo '<pre>';
+print_r($brands);
+echo '</pre>';
+?>
+
 <form action="/action_page.php">
   Brand:<br>
   <select>

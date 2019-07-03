@@ -1,9 +1,15 @@
 <?php
 
+require('DB.php');
+
 class Car {
 
-  public function index($var){
-    echo $var;
+  public function index(){
+    $db = new DB();
+    $db->prepare("SELECT * FROM brand");
+    $result = $db->execute_select();
+    
+    return $result;
   }
 
   public function show(){
