@@ -7,14 +7,10 @@ $(document).ready(function(){
       url: "/rentals/cars/features",
       data: {car_id: $(this).val()}
   }).done(function(msg) {
-      // $("#all_offers").empty();
-      // $("#all_offers").append(msg);
-      console.log(msg)
+      var features = JSON.parse(msg);
+      console.log(features)
+      $("#car_features").html(features.map( feature => `<li>${feature.feature_name}</li>` ));
       
-      //alert(clicked_element.attr('class'));
-      // clicked_element.attr('class', new_sorting_type);
-      //$("#body").append('<div class="loading"></div>');
-      //$("#body").removeClass('loading');
   });
 
   request.fail(function(msg) {
