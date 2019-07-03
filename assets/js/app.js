@@ -10,7 +10,6 @@ $(document).ready(function(){
       var features = JSON.parse(msg);
       console.log(features)
       $("#car_features").html(features.map( feature => `<li>${feature.feature_name}</li>` ));
-      
   });
 
   request.fail(function(msg) {
