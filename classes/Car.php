@@ -32,6 +32,14 @@ class Car {
     // return $brands;
   }
 
+  public function getCarFeatures(){
+    // $db = new DB();
+    // $db->prepare("SELECT * FROM brand");
+    // $brands = $db->execute_select();
+    
+    // return $brands;
+  }
+
 }
 
 ?>
