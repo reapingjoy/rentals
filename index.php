@@ -41,10 +41,15 @@ switch ($request) {
     case '/brands/list' :
         Car::index();
         break;
+    case '/cars/features' :
+        $car_id = $_POST['car_id'];
+        echo json_encode(Car::getCarFeatures($car_id));
+        break;
 
 // Booking routes
     case '/bookings/form' :
         $cars = Car::getAllCars();
+        $features = Car::getCarFeatures(1);
         require __DIR__ . '/views/booking-form.php';
         break;
     case '/bookings/create' :

@@ -2,7 +2,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/rentals/assets/stylesheet.css">
-<script type="text/javascript" src="/rentals/assets/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/rentals/assets/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/rentals/assets/js/app.js"></script>
 </head>
 <body>
 
@@ -17,13 +18,15 @@
   <input type="date" name="booked_to" value="">
   <br>
   Car:<br>
-  <select name="cars">
+  <select name="cars" id="show_cars">
   <?php
     foreach($cars as $car){
     echo  '<option value="'.$car['id'].'">'.$car['car_short'].'</option>';
     }
   ?>
   </select>
+  <br>
+  <ul id="car_features"></ul>
   <br>
   <input type="submit" value="Search">
 </form> 

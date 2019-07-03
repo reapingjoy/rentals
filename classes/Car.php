@@ -38,12 +38,21 @@ class Car {
     // return $brands;
   }
 
-  public function getCarFeatures(){
-    // $db = new DB();
-    // $db->prepare("SELECT * FROM brand");
-    // $brands = $db->execute_select();
+  public function getCarFeatures($car_id){
+
+    $db = new DB();
+    $sql = "SELECT feature.feature_name FROM car
+    INNER JOIN car_feature ON car_feature.car_id = car.id
+    INNER JOIN feature ON feature.id = car_feature.feature_id
+    WHERE car.id = ?";
+
+    if(!$db->prepare($sql, 'i')){
+      throw new \Exception($db->error);  
+    }
     
-    // return $brands;
+    $features = $db->execute_select([$car_id]);
+    
+    return $features;
   }
 
 }
