@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/rentals/assets/stylesheet.css">
+<script type="text/javascript" src="/rentals/assets/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
