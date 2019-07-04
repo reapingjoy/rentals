@@ -6,11 +6,7 @@
 <script type="text/javascript" src="/rentals/assets/js/app.js"></script>
 </head>
 <body>
-<?php
-echo '<pre>';
-print_r($bookings);
-echo '</pre>';
-?>
+
 <h2>List Bookings</h2>
 
 <table>
@@ -25,17 +21,21 @@ echo '</pre>';
     <th>Booked To</th>
     <th>Total</th>
   </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
+  <?php
+    foreach($bookings as $booking){
+    echo  '<tr>';
+    echo  '<td>'.$booking['booking_id'].'</td>';
+    echo  '<td>'.$booking['brand_name'].'</td>';
+    echo  '<td>'.$booking['model_name'].'</td>';
+    echo  '<td>'.$booking['manufacture_year'].'</td>';
+    echo  '<td>'.$booking['fuel_type'].' - '.$booking['transmission'].'</td>';
+    echo  '<td>'.$booking['features'].'</td>';
+    echo  '<td>'.$booking['booked_from'].'</td>';
+    echo  '<td>'.$booking['booked_to'].'</td>';
+    echo  '<td>'.$booking['total'].'</td>';
+    echo  '</tr>';
+    }
+  ?>
 </table>
 
 
