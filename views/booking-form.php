@@ -34,9 +34,9 @@
   <input type="submit" value="Book">
 </form> 
 
-</div>
+<button onclick="goBack()" class="goback">Go Back</button>
 
-<button onclick="goBack()">Go Back</button>
+</div>
 
 <script>
 function goBack() {

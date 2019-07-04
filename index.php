@@ -23,7 +23,7 @@ switch ($request) {
 // Car routes
     case '/cars/form' :
         $brands = Car::index();
-        require __DIR__ . '/views/car-form.php';
+        require __DIR__ . '/views/add-car.php';
         break;
     case '/cars/show' :
         echo $request;
