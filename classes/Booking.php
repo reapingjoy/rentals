@@ -142,6 +142,30 @@ class Booking {
     return $booked_model_years;
   }
 
+  public function getBookingsByDateRange($filter_from, $filter_to) {
+
+    $db = new DB();
+
+    $sql="SELECT *, GROUP_CONCAT(feature.feature_name) AS features, booking.id AS booking_id, car.id AS car_id FROM booking
+    INNER JOIN car ON car.id = booking.car_id
+    INNER JOIN model ON model.id = car.model_id
+    INNER JOIN brand ON brand.id = model.brand_id
+    INNER JOIN engine ON engine.id = car.engine_id
+    LEFT JOIN car_feature ON car_feature.car_id = car.id
+    LEFT JOIN feature ON feature.id = car_feature.feature_id
+    WHERE ? <= booking.booked_to
+    AND ? >= booking.booked_from
+    GROUP BY booking.id";
+
+    if(!$db->prepare($sql, 'ss')){
+      throw new \Exception($db->error);  
+    }
+
+    $bookings = $db->execute_select([$filter_from,$filter_to]);
+
+    return $bookings;
+  }
+
 
 }
 

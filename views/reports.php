@@ -11,7 +11,7 @@
 
 <h1>View Reports</h1>
 
-<form action="/rentals/bookings" method="post">
+<form action="/rentals/bookings/bookings-by-date-range" method="post">
   Start Date:<br>
   <input type="date" name="filter_from" value="">
   <br>

@@ -87,6 +87,11 @@ switch ($request) {
         $model_id = $_POST['model_id'];
         echo json_encode(Booking::getYearsByModel($model_id));
         break;
+    case '/bookings/bookings-by-date-range' :
+        $filter_from = $_POST['filter_from'];
+        $filter_to = $_POST['filter_to'];
+        Booking::getBookingsByDateRange($filter_from, $filter_to);
+        break;
 
 // Price Plans routes
     case '/price-plans/create' :
