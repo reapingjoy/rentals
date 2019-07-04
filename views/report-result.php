@@ -23,6 +23,29 @@
     <th>Booked To</th>
     <th>Total</th>
   </tr>
+  <tr>
+    <td></td>
+    <td>
+      <select name="brand_filter">
+        <option value="">Please Select</option>
+      </select>
+    </td>
+    <td>
+      <select name="model_filter">
+        <option value="">Please Select</option>
+      </select>
+    </td>
+    <td>
+      <select name="year_filter">
+        <option value="">Please Select</option>
+      </select>
+    </td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
   <?php
     foreach($bookings as $booking){
     echo  '<tr>';
