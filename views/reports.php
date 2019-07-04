@@ -20,13 +20,13 @@
   <input type="date" name="filter_to" value="">
   <br>
 
-  Brand:<br>
+  <!-- Brand:<br>
   <select name="filter_brand">
     <option value="">Please Select</option>
     <?php
-    foreach($booked_brands as $booked_brand){
-    echo  '<option value="'.$booked_brand['id'].'">'.$booked_brand['brand_name'].'</option>';
-    }
+    // foreach($booked_brands as $booked_brand){
+    // echo  '<option value="'.$booked_brand['id'].'">'.$booked_brand['brand_name'].'</option>';
+    // }
     ?>
   </select>
   <br>
@@ -52,7 +52,8 @@
   Feature:<br>
   <select name="filter_feature">
     <option value="">Please Select</option>
-  </select>
+  </select> -->
+
   <br>
   <br>
   <input type="submit" value="Search">
