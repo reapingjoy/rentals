@@ -78,6 +78,23 @@ class Booking {
     return $total;
   }
 
+  public function getBookedBrands() {
+    $db = new DB();
+    $sql = "SELECT brand.id, brand.brand_name FROM booking
+    INNER JOIN car ON car.id = booking.car_id
+    INNER JOIN model ON model.id = car.model_id
+    INNER JOIN brand ON brand.id = model.brand_id
+    GROUP BY brand.id";
+
+  if(!$db->prepare($sql)){
+    throw new \Exception($db->error);  
+  }
+  
+  $booked_brands = $db->execute_select([]);
+
+  return $booked_brands;
+  }
+
 
 }
 

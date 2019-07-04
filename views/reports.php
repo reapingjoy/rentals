@@ -5,6 +5,8 @@
 </head>
 <body>
 
+
+
 <h1>View Reports</h1>
 
 <form action="/rentals/bookings" method="post">
@@ -19,6 +21,11 @@
   Brand:<br>
   <select name="brand">
     <option value="">Please Select</option>
+    <?php
+    foreach($booked_brands as $booked_brand){
+    echo  '<option value="'.$booked_brand['id'].'">'.$booked_brand['brand_name'].'</option>';
+    }
+    ?>
   </select>
   <br>
 

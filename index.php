@@ -78,6 +78,9 @@ switch ($request) {
         $workdays = Booking::getWorkingDays($booked_from, $booked_to);
         echo Booking::checkTotal($workdays);
         break;
+    // case '/bookings/booked-brands' :
+    //     echo $request;
+    //     break;
 
 // Price Plans routes
     case '/price-plans/create' :
@@ -98,6 +101,7 @@ switch ($request) {
 
 // Report routes
     case '/reports' :
+        $booked_brands = Booking::getBookedBrands();
         require __DIR__ . '/views/reports.php';
         break;
 
