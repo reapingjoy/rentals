@@ -2,8 +2,20 @@
 
 class Booking {
 
-  public function create() {
-    print_r($_POST);
+  public function create($booked_from, $booked_to, $car_id, $total) {
+
+    self::checkAvailability($booked_from, $booked_to, $car_id);
+    die();
+
+    $db = new DB();
+    $sql = "INSERT INTO booking (car_id, booked_from, booked_to, total)
+    VALUES (?, ?, ?, ?)";
+
+    if(!$db->prepare($sql, 'issd')){
+      throw new \Exception($db->error);  
+    }
+
+    $booking = $db->execute([$car_id,$booked_from,$booked_to,$total]);
   }
 
   public function checkAvailability($booked_from, $booked_to, $car_id) {
@@ -17,11 +29,15 @@ class Booking {
     AND ? >= booking.booked_from )
     AND booking.car_id = ? ";
 
-    if(!$db->prepare($sql, 'i')){
+    if(!$db->prepare($sql, 'issi')){
       throw new \Exception($db->error);  
     }
 
     $availability = $db->execute_select([$car_id,$booked_from,$booked_to,$car_id]);
+
+    echo '<pre>';
+    print_r($availability);
+    echo '</pre>';
 
     }
 

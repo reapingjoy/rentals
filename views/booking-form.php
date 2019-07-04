@@ -30,6 +30,7 @@
   <ul id="car_features"></ul>
   <br>
   <h1 id="booking_total"></h1>
+  <input type="hidden" name="total" id="total">
   <input type="submit" value="Book">
 </form> 
 

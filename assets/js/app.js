@@ -11,7 +11,6 @@ $(document).ready(function(){
       data: {car_id: $(this).val()}
   }).done(function(msg) {
       var features = JSON.parse(msg);
-      console.log(features)
       $("#car_features").html(features.map( feature => `<li>${feature.feature_name}</li>` ));
   });
 
@@ -34,7 +33,7 @@ $(document).ready(function(){
         data: {booked_from: booked_from, booked_to: booked_to}
         }).done(function(msg) {
             $("#booking_total").html('Total: '+ msg +' euro');
-            console.log(msg)
+            $("#total").val(msg);
         });
     }
   
