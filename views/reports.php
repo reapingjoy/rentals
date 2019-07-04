@@ -2,6 +2,8 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/rentals/assets/stylesheet.css">
+<script type="text/javascript" src="/rentals/assets/js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="/rentals/assets/js/app.js"></script>
 </head>
 <body>
 
@@ -19,7 +21,7 @@
   <br>
 
   Brand:<br>
-  <select name="brand">
+  <select name="filter_brand">
     <option value="">Please Select</option>
     <?php
     foreach($booked_brands as $booked_brand){
@@ -30,31 +32,25 @@
   <br>
 
   Model:<br>
-  <select name="model">
+  <select name="filter_model">
     <option value="">Please Select</option>
   </select>
   <br>
 
   Year:<br>
-  <select name="year">
+  <select name="filter_year">
     <option value="">Please Select</option>
   </select>
   <br>
 
   Engine:<br>
-  <select name="engine">
-    <option value="">Please Select</option>
-  </select>
-  <br>
-
-  Transmision:<br>
-  <select name="transmision">
+  <select name="filter_engine">
     <option value="">Please Select</option>
   </select>
   <br>
 
   Feature:<br>
-  <select name="feature">
+  <select name="filter_feature">
     <option value="">Please Select</option>
   </select>
   <br>
@@ -71,14 +67,12 @@
     <th>Model</th>
     <th>Year</th>
     <th>Engine</th>
-    <th>Transmission</th>
     <th>Feature</th>
     <th>Booked From</th>
     <th>Booked To</th>
     <th>Total</th>
   </tr>
   <tr>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>

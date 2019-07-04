@@ -45,6 +45,7 @@ switch ($request) {
         $car_id = $_POST['car_id'];
         echo json_encode(Car::getCarFeatures($car_id));
         break;
+    
 
 // Booking routes
     case '/bookings/form' :
@@ -78,9 +79,14 @@ switch ($request) {
         $workdays = Booking::getWorkingDays($booked_from, $booked_to);
         echo Booking::checkTotal($workdays);
         break;
-    // case '/bookings/booked-brands' :
-    //     echo $request;
-    //     break;
+    case '/bookings/models-by-brand' :
+        $brand_id = $_POST['brand_id'];
+        echo json_encode(Booking::getModelsByBrand($brand_id));
+        break;
+    case '/bookings/years-by-model' :
+        $model_id = $_POST['model_id'];
+        echo json_encode(Booking::getYearsByModel($model_id));
+        break;
 
 // Price Plans routes
     case '/price-plans/create' :

@@ -95,6 +95,53 @@ class Booking {
   return $booked_brands;
   }
 
+  public function getModelsByBrand($brand_id) {
+
+    $db = new DB();
+    $sql = "SELECT model.id, model.model_name
+    FROM booking
+    INNER JOIN car ON car.id = booking.car_id
+    INNER JOIN model ON model.id = car.model_id
+    INNER JOIN brand ON brand.id = model.brand_id
+    WHERE brand.id = ?
+    GROUP BY model.id";
+
+    if(!$db->prepare($sql, 'i')){
+      throw new \Exception($db->error);  
+    }
+
+    $booked_models = $db->execute_select([$brand_id]);
+
+    // echo '<pre>';
+    // print_r($booked_models);
+    // echo '</pre>';
+
+    return $booked_models;
+  }
+
+  public function getYearsByModel($model_id) {
+
+    $db = new DB();
+    $sql = "SELECT DISTINCT car.manufacture_year
+    FROM booking
+    INNER JOIN car ON car.id = booking.car_id
+    INNER JOIN model ON model.id = car.model_id
+    WHERE model.id = ? ";
+
+    if(!$db->prepare($sql, 'i')){
+      throw new \Exception($db->error);  
+    }
+
+    $booked_model_years = $db->execute_select([$model_id]);
+
+    // echo '<pre>';
+    // print_r($booked_model_years);
+    // echo '</pre>';
+    // die();
+
+    return $booked_model_years;
+  }
+
 
 }
 

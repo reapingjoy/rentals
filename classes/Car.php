@@ -30,14 +30,6 @@ class Car {
     return $brands;
   }
 
-  public function getModelsByBrand(){
-    // $db = new DB();
-    // $db->prepare("SELECT * FROM brand");
-    // $brands = $db->execute_select();
-    
-    // return $brands;
-  }
-
   public function getCarFeatures($car_id){
 
     $db = new DB();
@@ -54,6 +46,7 @@ class Car {
     
     return $features;
   }
+
 
 }
 
