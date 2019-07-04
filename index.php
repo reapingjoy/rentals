@@ -90,7 +90,8 @@ switch ($request) {
     case '/bookings/bookings-by-date-range' :
         $filter_from = $_POST['filter_from'];
         $filter_to = $_POST['filter_to'];
-        Booking::getBookingsByDateRange($filter_from, $filter_to);
+        $bookings = Booking::getBookingsByDateRange($filter_from, $filter_to);
+        require __DIR__ . '/views/report-result.php';
         break;
 
 // Price Plans routes
