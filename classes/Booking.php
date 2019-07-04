@@ -4,41 +4,50 @@ class Booking {
 
   public function create($booked_from, $booked_to, $car_id, $total) {
 
-    self::checkAvailability($booked_from, $booked_to, $car_id);
-    die();
+    if(self::checkAvailability($booked_from, $booked_to, $car_id)){
 
-    $db = new DB();
-    $sql = "INSERT INTO booking (car_id, booked_from, booked_to, total)
-    VALUES (?, ?, ?, ?)";
+      $db = new DB();
+      $sql = "INSERT INTO booking (car_id, booked_from, booked_to, total)
+      VALUES (?, ?, ?, ?)";
 
-    if(!$db->prepare($sql, 'issd')){
-      throw new \Exception($db->error);  
+      if(!$db->prepare($sql, 'issd')){
+        throw new \Exception($db->error);  
+      }
+
+      $booking = $db->execute([$car_id,$booked_from,$booked_to,$total]);
+    } else {
+      echo 'Not Available!';
     }
-
-    $booking = $db->execute([$car_id,$booked_from,$booked_to,$total]);
+    
   }
 
   public function checkAvailability($booked_from, $booked_to, $car_id) {
 
     $db = new DB();
-    $sql = "SELECT booking.id FROM booking
-    WHERE NOT EXIST (
-    SELECT * FROM booking
+
+    $sql="SELECT * FROM booking
     WHERE booking.car_id = ?
     AND ? <= booking.booked_to
-    AND ? >= booking.booked_from )
-    AND booking.car_id = ? ";
+    AND ? >= booking.booked_from";
 
-    if(!$db->prepare($sql, 'issi')){
+    // $sql = "SELECT booking.id FROM booking
+    // WHERE NOT EXISTS (
+    // SELECT * FROM booking
+    // WHERE booking.car_id = ?
+    // AND ? <= booking.booked_to
+    // AND ? >= booking.booked_from )
+    // AND booking.car_id = ? ";
+
+    if(!$db->prepare($sql, 'iss')){
       throw new \Exception($db->error);  
     }
 
-    $availability = $db->execute_select([$car_id,$booked_from,$booked_to,$car_id]);
+    $availability = $db->execute_select([$car_id,$booked_from,$booked_to]);
 
-    echo '<pre>';
-    print_r($availability);
-    echo '</pre>';
-
+    if (empty($availability)) {
+      return true;
+    }
+    return false;
     }
 
   public function getWorkingDays($from, $to) {
