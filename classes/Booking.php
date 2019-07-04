@@ -3,7 +3,7 @@
 class Booking {
 
   public function create() {
-    print_r($_POST['booked_from']);
+    print_r($_POST);
   }
 
   public function checkAvailability($booked_from, $booked_to, $car_id) {
@@ -42,7 +42,6 @@ class Booking {
         if (in_array($period->format('*-m-d'), $holidayDays)) continue;
         $days++;
     }
-    echo $days;
     return $days;
   }
 
@@ -59,8 +58,6 @@ class Booking {
     $price_plan = $db->execute_select([$workdays]);
     
     $total = $price_plan[0]['price'] * $workdays;
-
-    echo $total;
     return $total;
   }
 

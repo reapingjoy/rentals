@@ -2,6 +2,9 @@ $(document).ready(function(){
 
   $("#show_cars").change(function(){
 
+    if(!$(this).val()){
+      return false;
+    }
     var request = $.ajax({
       type: "POST",
       url: "/rentals/cars/features",
@@ -18,6 +21,24 @@ $(document).ready(function(){
 
 
   });
+
+  $('input[type=date]').change(function(){
+    var booked_from = $('input[name=booked_from]').val();
+    var booked_to = $('input[name=booked_to]').val();
+
+    if(booked_from && booked_to && (new Date(booked_from) <= new Date(booked_to)))
+    {
+      $.ajax({
+        type: "POST",
+        url: "/rentals/bookings/check-total",
+        data: {booked_from: booked_from, booked_to: booked_to}
+        }).done(function(msg) {
+            $("#booking_total").html('Total: '+ msg +' euro');
+            console.log(msg)
+        });
+    }
+  
+  })
 
 
 });

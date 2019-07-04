@@ -72,9 +72,11 @@ switch ($request) {
         $endDate = '2019-07-22';
         Booking::getWorkingDays($startDate, $endDate);
         break;
-        case '/bookings/check-total' :
-        $workdays = 2;
-        Booking::checkTotal($workdays);
+    case '/bookings/check-total' :
+        $booked_from = $_POST['booked_from'];
+        $booked_to = $_POST['booked_to'];
+        $workdays = Booking::getWorkingDays($booked_from, $booked_to);
+        echo Booking::checkTotal($workdays);
         break;
 
 // Price Plans routes

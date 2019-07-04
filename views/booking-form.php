@@ -10,7 +10,7 @@
 <div class="container">
 <h2>Booking Form</h2>
 
-<form action="/rentals/bookings/check-total" method="post">
+<form action="/rentals/bookings/create" method="post">
   Rental Start:<br>
   <input type="date" name="booked_from" value="">
   <br>
@@ -19,6 +19,7 @@
   <br>
   Car:<br>
   <select name="cars" id="show_cars">
+    <option value="">Please Select</option>
   <?php
     foreach($cars as $car){
     echo  '<option value="'.$car['id'].'">'.$car['car_short'].'</option>';
@@ -28,7 +29,8 @@
   <br>
   <ul id="car_features"></ul>
   <br>
-  <input type="submit" value="Search">
+  <h1 id="booking_total"></h1>
+  <input type="submit" value="Book">
 </form> 
 
 </div>
