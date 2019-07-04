@@ -11,36 +11,54 @@
 
 <h1>Add New Car</h1>
 
-<form action="/rentals/bookings/bookings-by-date-range" method="post">
+<?php
+  // echo '<pre>';
+  // print_r($features);
+  // echo '</pre>';
+?>
+
+<form action="/rentals/cars/create" method="post">
   
   Brand:<br>
-  <select name="filter_brand">
+  <select name="car_brand" required>
     <option value="">Please Select</option>
+    <?php
+    foreach($brands as $brand){
+    echo  '<option value="'.$brand['id'].'">'.$brand['brand_name'].'</option>';
+    }
+  ?>
   </select>
   <br>
 
   Model:<br>
-  <select name="filter_model">
+  <select name="car_model" required>
     <option value="">Please Select</option>
   </select>
   <br>
 
   Year:<br>
-  <select name="filter_year">
-    <option value="">Please Select</option>
-  </select>
+  <input type="text" name="car_year" required>
   <br>
 
   Engine:<br>
-  <select name="filter_engine">
+  <select name="car_engine">
     <option value="">Please Select</option>
+    <?php
+    foreach($engines as $engine){
+    echo  '<option value="'.$engine['id'].'">'.$engine['fuel_type'].' - '.$engine['transmission'].'</option>';
+    }
+    ?>
   </select>
   <br>
 
-  Feature:<br>
-  <select name="filter_feature">
-    <option value="">Please Select</option>
-  </select>
+  Features:<br>
+  <ul style="list-style-type: none; padding: 0px;">
+  <?php
+    foreach($features as $feature){
+    echo  '<li><input type="checkbox" name="features[]" value="'.$feature['id'].'">'.$feature['feature_name'].'</input></li>';
+    }
+  ?>
+  </ul>
   <br>
   <br>
   <input type="submit" value="Add">

@@ -4,8 +4,6 @@ spl_autoload_register(function ($class_name) {
   include './classes/'.$class_name.'.php';
 });
 
-// require_once('classes/Car.php');
-// require_once('classes/Booking.php');
 require_once('config/db_config.php');
 
 $request = str_replace("/rentals", "",  $_SERVER["REQUEST_URI"]);
@@ -22,7 +20,13 @@ switch ($request) {
 
 // Car routes
     case '/cars/form' :
-        $brands = Car::index();
+        $brands = Car::getAllBrands();
+        $engines = Car::getAllEngines();
+        $features = Car::getAllFeatures();
+        require __DIR__ . '/views/add-car.php';
+        break;
+    case '/cars/create' :
+        Car::createNewCar();
         require __DIR__ . '/views/add-car.php';
         break;
     case '/cars/show' :
@@ -37,13 +41,16 @@ switch ($request) {
     case '/cars/list' :
         Car::getAllCars();
         break;
-
     case '/brands/list' :
-        Car::index();
+        echo $request;
         break;
     case '/cars/features' :
         $car_id = $_POST['car_id'];
         echo json_encode(Car::getCarFeatures($car_id));
+        break;
+    case '/cars/models-by-brand' :
+        $brand_id = $_POST['brand_id'];
+        echo json_encode(Car::getModelsByBrand($brand_id));
         break;
     
 

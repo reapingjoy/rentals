@@ -77,4 +77,23 @@ $(document).ready(function(){
   })
 
 
+  $('select[name=car_brand]').change(function(){
+
+    if(!$(this).val()){
+      return false;
+    }
+    var brand_id = $(this).val();
+    $.ajax({
+      type: "POST",
+      url: "/rentals/cars/models-by-brand",
+      data: {brand_id: brand_id}
+      }).done(function(msg) {
+          console.log(msg);
+          var models = JSON.parse(msg);
+          $('select[name=car_model]').html(models.map( model => `<option value="${model.id}">${model.model_name}</option>` ));
+      });
+  
+  })
+
+
 });
