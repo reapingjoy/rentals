@@ -119,7 +119,7 @@ switch ($request) {
 
 // Not Found
     default:
-        echo '404 not found';
+        require __DIR__ . '/views/404.php';
         break;
 }
 ?>

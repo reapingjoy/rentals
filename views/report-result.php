@@ -7,6 +7,8 @@
 </head>
 <body>
 
+<div class="container" style="width: 90%;">
+
 <h2>List Bookings</h2>
 
 <table>
@@ -40,7 +42,9 @@
 
 
 
-<button onclick="goBack()">Go Back</button>
+<button onclick="goBack()" class="goback">Go Back</button>
+
+</div>
 
 <script>
 function goBack() {
