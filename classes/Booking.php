@@ -30,14 +30,6 @@ class Booking {
     AND ? <= booking.booked_to
     AND ? >= booking.booked_from";
 
-    // $sql = "SELECT booking.id FROM booking
-    // WHERE NOT EXISTS (
-    // SELECT * FROM booking
-    // WHERE booking.car_id = ?
-    // AND ? <= booking.booked_to
-    // AND ? >= booking.booked_from )
-    // AND booking.car_id = ? ";
-
     if(!$db->prepare($sql, 'iss')){
       throw new \Exception($db->error);  
     }
