@@ -4,11 +4,29 @@ require('DB.php');
 
 class Car {
 
-  public function createNewCar() {
-    echo '<pre>';
-    print_r($_POST);
-    echo '</pre>';
-    die();
+  public function createNewCar($params) {
+
+    $db = new DB();
+    if(!$db->prepare("INSERT INTO car (model_id, engine_id, manufacture_year)
+    VALUES (?, ?, ?)", 'iii')){
+      throw new \Exception($db->error); 
+    }
+
+    if($db->execute([$params['car_model'], $params['car_engine'], $params['car_year']])) {
+
+      if(!$db->prepare("INSERT INTO car_feature (car_id, feature_id)
+      VALUES (?, ?)", 'ii')){
+        throw new \Exception($db->error); 
+      }
+      $new_car_id = $db->insert_id;
+      foreach($params['features'] as $feature) {
+        if(!$db->execute([$new_car_id, $feature])){
+          throw new \Exception($db->error); 
+        }
+      }
+
+    }
+    return true;
   }
 
   public function getAllCars() {

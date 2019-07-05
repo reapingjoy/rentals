@@ -29,8 +29,8 @@
       <select name="brand_filter">
         <option value="">Please Select</option>
         <?php
-          foreach($bookings as $booking){
-            echo  '<option value="'.$booking['brand_name'].'">'.$booking['brand_name'].'</option>';
+          foreach($brands as $brand){
+            echo  '<option value="'.$brand.'">'.$brand.'</option>';
             }
         ?>
       </select>
@@ -39,8 +39,8 @@
       <select name="model_filter">
         <option value="">Please Select</option>
         <?php
-          foreach($bookings as $booking){
-            echo  '<option value="'.$booking['model_name'].'">'.$booking['model_name'].'</option>';
+          foreach($models as $model){
+            echo  '<option value="'.$model.'">'.$model.'</option>';
             }
         ?>
       </select>
@@ -49,8 +49,8 @@
       <select name="year_filter">
         <option value="">Please Select</option>
         <?php
-          foreach($bookings as $booking){
-            echo  '<option value="'.$booking['manufacture_year'].'">'.$booking['manufacture_year'].'</option>';
+          foreach($years as $year){
+            echo  '<option value="'.$year.'">'.$year.'</option>';
             }
         ?>
       </select>
@@ -59,8 +59,8 @@
     <select name="engine_filter">
         <option value="">Please Select</option>
         <?php
-          foreach($bookings as $booking){
-            echo  '<option value="'.$booking['fuel_type'].' - '.$booking['transmission'].'">'.$booking['fuel_type'].' - '.$booking['transmission'].'</option>';
+          foreach($engines as $engine){
+            echo  '<option value="'.$engine.'">'.$engine.'</option>';
             }
         ?>
       </select>

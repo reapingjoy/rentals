@@ -39,42 +39,42 @@ $(document).ready(function(){
   
   })
 
-  $('select[name=filter_brand]').change(function(){
+  // $('select[name=filter_brand]').change(function(){
 
-    if(!$(this).val()){
-      return false;
-    }
-    var brand_id = $(this).val();
-    $.ajax({
-      type: "POST",
-      url: "/rentals/bookings/models-by-brand",
-      data: {brand_id: brand_id}
-      }).done(function(msg) {
-          console.log(msg);
-          var models = JSON.parse(msg);
-          $('select[name=filter_model]').html(models.map( model => `<option value="${model.id}">${model.model_name}</option>` ));
-      });
+  //   if(!$(this).val()){
+  //     return false;
+  //   }
+  //   var brand_id = $(this).val();
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/rentals/bookings/models-by-brand",
+  //     data: {brand_id: brand_id}
+  //     }).done(function(msg) {
+  //         console.log(msg);
+  //         var models = JSON.parse(msg);
+  //         $('select[name=filter_model]').html(models.map( model => `<option value="${model.id}">${model.model_name}</option>` ));
+  //     });
   
-  })
+  // })
 
 
-  $('select[name=filter_model]').change(function(){
+  // $('select[name=filter_model]').change(function(){
 
-    if(!$(this).val()){
-      return false;
-    }
-    var model_id = $(this).val();
-    $.ajax({
-      type: "POST",
-      url: "/rentals/bookings/years-by-model",
-      data: {model_id: model_id}
-      }).done(function(msg) {
-          console.log(msg);
-          var years = JSON.parse(msg);
-          $('select[name=filter_year]').html(years.map( year => `<option value="${year.manufacture_year}">${year.manufacture_year}</option>` ));
-      });
+  //   if(!$(this).val()){
+  //     return false;
+  //   }
+  //   var model_id = $(this).val();
+  //   $.ajax({
+  //     type: "POST",
+  //     url: "/rentals/bookings/years-by-model",
+  //     data: {model_id: model_id}
+  //     }).done(function(msg) {
+  //         console.log(msg);
+  //         var years = JSON.parse(msg);
+  //         $('select[name=filter_year]').html(years.map( year => `<option value="${year.manufacture_year}">${year.manufacture_year}</option>` ));
+  //     });
   
-  })
+  // })
 
 
   $('select[name=car_brand]').change(function(){

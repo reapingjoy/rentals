@@ -26,7 +26,7 @@ switch ($request) {
         require __DIR__ . '/views/add-car.php';
         break;
     case '/cars/create' :
-        Car::createNewCar();
+        Car::createNewCar($_POST);
         require __DIR__ . '/views/add-car.php';
         break;
     case '/cars/show' :
@@ -98,6 +98,20 @@ switch ($request) {
         $filter_from = $_POST['filter_from'];
         $filter_to = $_POST['filter_to'];
         $bookings = Booking::getBookingsByDateRange($filter_from, $filter_to);
+
+        $brands = array();
+        $models = array();
+        $years = array();
+        $engines = array();
+        
+        foreach($bookings as $booking) {
+          $brands[$booking['brand_name']] = $booking['brand_name'];
+          $models[$booking['model_name']] = $booking['model_name'];
+          $years[$booking['manufacture_year']] = $booking['manufacture_year'];
+          $engines[$booking['engine_id']] = $booking['fuel_type'].' - '.$booking['transmission'];
+        }
+
+
         require __DIR__ . '/views/report-result.php';
         break;
 
