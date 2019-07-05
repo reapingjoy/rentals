@@ -2,6 +2,14 @@
 
 class Booking {
 
+  /**
+   * Create New Booking
+   *
+   * @param  string  $booked_from
+   * @param  string  $booked_to
+   * @param  int  $car_id
+   * @param  int  $total
+   */
   public function create($booked_from, $booked_to, $car_id, $total) {
 
     if(self::checkAvailability($booked_from, $booked_to, $car_id)){
@@ -21,6 +29,13 @@ class Booking {
     return true;
   }
 
+  /**
+   * Check Car Availability for a period
+   *
+   * @param  string  $booked_from
+   * @param  string  $booked_to
+   * @param  int  $car_id
+   */
   public function checkAvailability($booked_from, $booked_to, $car_id) {
 
     $db = new DB();
@@ -40,8 +55,14 @@ class Booking {
       return true;
     }
     return false;
-    }
+  }
 
+  /**
+   * Get Number of workdays in a date period
+   *
+   * @param  string  $from
+   * @param  string  $to
+   */
   public function getWorkingDays($from, $to) {
     $workingDays = [1, 2, 3, 4, 5];
     $holidayDays = ['*-12-25', '*-01-01'];
@@ -62,6 +83,12 @@ class Booking {
     return $days;
   }
 
+
+  /**
+   * Get Number of workdays in a date period
+   *
+   * @param  int  $workdays
+   */
   public function checkTotal($workdays) {
 
     $db = new DB();
@@ -78,6 +105,11 @@ class Booking {
     return $total;
   }
 
+
+  /**
+   * Get Booked brands
+   *
+   */
   public function getBookedBrands() {
     $db = new DB();
     $sql = "SELECT brand.id, brand.brand_name FROM booking
@@ -95,6 +127,12 @@ class Booking {
   return $booked_brands;
   }
 
+
+  /**
+   * Get Models by brand
+   *
+   * @param  int  $brand_id
+   */
   public function getModelsByBrand($brand_id) {
 
     $db = new DB();
@@ -115,6 +153,11 @@ class Booking {
     return $booked_models;
   }
 
+  /**
+   * Get Manufacture year by car model
+   *
+   * @param  int  $model_id
+   */
   public function getYearsByModel($model_id) {
 
     $db = new DB();
@@ -133,6 +176,13 @@ class Booking {
     return $booked_model_years;
   }
 
+
+  /**
+   * Get Booking by date range
+   *
+   * @param  string  $filter_from
+   * @param  string  $filter_to
+   */
   public function getBookingsByDateRange($filter_from, $filter_to) {
 
     $db = new DB();

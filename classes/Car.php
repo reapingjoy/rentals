@@ -2,6 +2,12 @@
 
 class Car {
 
+
+  /**
+   * Create New Car
+   *
+   * @param  array  $params
+   */
   public function createNewCar($params) {
 
     $db = new DB();
@@ -30,6 +36,10 @@ class Car {
     return true;
   }
 
+  /**
+   * Get All Cars
+   *
+   */
   public function getAllCars() {
     $db = new DB();
     $sql = "SELECT car.id, brand.brand_name, model.model_name, engine.fuel_type, engine.transmission, car.manufacture_year , CONCAT_WS(',' ,brand.brand_name, model.model_name, engine.fuel_type, engine.transmission, car.manufacture_year) AS car_short
@@ -44,6 +54,10 @@ class Car {
     return $cars;
   }
 
+  /**
+   * Get All Brands
+   *
+   */
   public function getAllBrands() {
 
     $db = new DB();
@@ -53,6 +67,11 @@ class Car {
     return $brands;
   }
 
+  /**
+   * Get All model by brand
+   *
+   * @param  int  $brand_id
+   */
   public function getModelsByBrand($brand_id) {
     $db = new DB();
     $sql = "SELECT model.id, model.model_name
@@ -69,6 +88,10 @@ class Car {
     return $models;
   }
 
+  /**
+   * Get All Engine Types
+   *
+   */
   public function getAllEngines(){
     $db = new DB();
     $db->prepare("SELECT * FROM engine");
@@ -77,6 +100,10 @@ class Car {
     return $engines;
   }
 
+  /**
+   * Get All Features
+   *
+   */
   public function getAllFeatures(){
     $db = new DB();
     $db->prepare("SELECT * FROM feature");
@@ -85,6 +112,11 @@ class Car {
     return $features;
   }
 
+  /**
+   * Get single car features
+   *
+   * @param  int  $car_id
+   */
   public function getCarFeatures($car_id) {
 
     $db = new DB();
