@@ -20,12 +20,13 @@ switch ($request) {
 
 // Car routes
     case '/cars/form' :
+        $car = new Car();
         if($_POST){
-         $status = Car::createNewCar($_POST);  
+         $status = $car->createNewCar($_POST);  
         }
-        $brands = Car::getAllBrands();
-        $engines = Car::getAllEngines();
-        $features = Car::getAllFeatures();
+        $brands = $car->getAllBrands();
+        $engines = $car->getAllEngines();
+        $features = $car->getAllFeatures();
         require __DIR__ . '/views/add-car.php';
         break;
     case '/cars/show' :
@@ -38,27 +39,32 @@ switch ($request) {
         echo $request;
         break;
     case '/cars/list' :
-        Car::getAllCars();
+        $car = new Car();
+        $car->getAllCars();
         break;
     case '/brands/list' :
         echo $request;
         break;
     case '/cars/features' :
+        $car = new Car();
         $car_id = $_POST['car_id'];
-        echo json_encode(Car::getCarFeatures($car_id));
+        echo json_encode($car->getCarFeatures($car_id));
         break;
     case '/cars/models-by-brand' :
+        $car = new Car();
         $brand_id = $_POST['brand_id'];
-        echo json_encode(Car::getModelsByBrand($brand_id));
+        echo json_encode($car->getModelsByBrand($brand_id));
         break;
     
 
 // Booking routes
     case '/bookings/form' :
+        $booking = new Booking();
         if($_POST){
-          $status = Booking::create($_POST['booked_from'],$_POST['booked_to'],$_POST['cars'],$_POST['total']);  
+          $status = $booking->create($_POST['booked_from'],$_POST['booked_to'],$_POST['cars'],$_POST['total']);  
         }
-        $cars = Car::getAllCars();
+        $car = new Car();
+        $cars = $car->getAllCars();
         require __DIR__ . '/views/booking-form.php';
         break;
     case '/bookings/show' :
@@ -74,23 +80,27 @@ switch ($request) {
         echo $request;
         break;
     case '/bookings/check-total' :
+        $booking = new Booking();
         $booked_from = $_POST['booked_from'];
         $booked_to = $_POST['booked_to'];
-        $workdays = Booking::getWorkingDays($booked_from, $booked_to);
-        echo Booking::checkTotal($workdays);
+        $workdays = $booking->getWorkingDays($booked_from, $booked_to);
+        echo $booking->checkTotal($workdays);
         break;
     case '/bookings/models-by-brand' :
+        $booking = new Booking();
         $brand_id = $_POST['brand_id'];
-        echo json_encode(Booking::getModelsByBrand($brand_id));
+        echo json_encode($booking->getModelsByBrand($brand_id));
         break;
     case '/bookings/years-by-model' :
+        $booking = new Booking();
         $model_id = $_POST['model_id'];
-        echo json_encode(Booking::getYearsByModel($model_id));
+        echo json_encode($booking->getYearsByModel($model_id));
         break;
     case '/bookings/bookings-by-date-range' :
+        $book = new Booking();
         $filter_from = $_POST['filter_from'];
         $filter_to = $_POST['filter_to'];
-        $bookings = Booking::getBookingsByDateRange($filter_from, $filter_to);
+        $bookings = $book->getBookingsByDateRange($filter_from, $filter_to);
 
         $brands = array();
         $models = array();
@@ -126,7 +136,8 @@ switch ($request) {
 
 // Report routes
     case '/reports' :
-        $booked_brands = Booking::getBookedBrands();
+        $book = new Booking();
+        $booked_brands = $book->getBookedBrands();
         require __DIR__ . '/views/reports.php';
         break;
 
