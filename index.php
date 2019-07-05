@@ -21,17 +21,17 @@ switch ($request) {
 // Car routes
     case '/cars/form' :
         if($_POST){
-          Car::createNewCar($_POST);  
+         $status = Car::createNewCar($_POST);  
         }
         $brands = Car::getAllBrands();
         $engines = Car::getAllEngines();
         $features = Car::getAllFeatures();
         require __DIR__ . '/views/add-car.php';
         break;
-    case '/cars/create' :
-        Car::createNewCar($_POST);
-        require __DIR__ . '/views/add-car.php';
-        break;
+    // case '/cars/create' :
+    //     Car::createNewCar($_POST);
+    //     require __DIR__ . '/views/add-car.php';
+    //     break;
     case '/cars/show' :
         echo $request;
         break;
@@ -59,13 +59,15 @@ switch ($request) {
 
 // Booking routes
     case '/bookings/form' :
+        if($_POST){
+          $status = Booking::create($_POST['booked_from'],$_POST['booked_to'],$_POST['cars'],$_POST['total']);  
+        }
         $cars = Car::getAllCars();
-        $features = Car::getCarFeatures(1);
         require __DIR__ . '/views/booking-form.php';
         break;
-    case '/bookings/create' :
-        Booking::create($_POST['booked_from'],$_POST['booked_to'],$_POST['cars'],$_POST['total']);
-        break;
+    // case '/bookings/create' :
+    //     Booking::create($_POST['booked_from'],$_POST['booked_to'],$_POST['cars'],$_POST['total']);
+    //     break;
     case '/bookings/show' :
         echo $request;
         break;

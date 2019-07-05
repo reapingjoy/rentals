@@ -1,7 +1,5 @@
 <?php
 
-require('DB.php');
-
 class Car {
 
   public function createNewCar($params) {
@@ -9,23 +7,26 @@ class Car {
     $db = new DB();
     if(!$db->prepare("INSERT INTO car (model_id, engine_id, manufacture_year)
     VALUES (?, ?, ?)", 'iii')){
-      throw new \Exception($db->error); 
+      return false;
     }
 
-    if($db->execute([$params['car_model'], $params['car_engine'], $params['car_year']])) {
-
+    if(!$db->execute([$params['car_model'], $params['car_engine'], $params['car_year']])) {
+      return false;
+    }
+    if(!empty($params['features'])){
       if(!$db->prepare("INSERT INTO car_feature (car_id, feature_id)
       VALUES (?, ?)", 'ii')){
-        throw new \Exception($db->error); 
+        return false;
       }
       $new_car_id = $db->insert_id;
       foreach($params['features'] as $feature) {
         if(!$db->execute([$new_car_id, $feature])){
-          throw new \Exception($db->error); 
+          return false;
         }
+      
       }
-
     }
+    
     return true;
   }
 

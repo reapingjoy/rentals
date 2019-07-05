@@ -55,6 +55,15 @@
   ?>
   </ul>
   <br>
+  <?php 
+  if(isset($status)) {
+    if($status){
+      echo '<h3 style = "color: green;">Car added succesfuly!</h3>';
+    }else{
+      echo '<h3 style = "color: red;">Something went wrong!</h3>';
+    }
+  }
+  ?>
   <br>
   <input type="submit" value="Add">
 </form> 

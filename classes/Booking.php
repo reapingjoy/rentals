@@ -16,9 +16,9 @@ class Booking {
 
       $booking = $db->execute([$car_id,$booked_from,$booked_to,$total]);
     } else {
-      echo 'Not Available!';
+      return false;
     }
-    
+    return true;
   }
 
   public function checkAvailability($booked_from, $booked_to, $car_id) {

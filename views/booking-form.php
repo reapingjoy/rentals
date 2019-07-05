@@ -10,7 +10,7 @@
 <div class="container">
 <h2>Booking Form</h2>
 
-<form action="/rentals/bookings/create" method="post">
+<form action="/rentals/bookings/form" method="post">
   Rental Start:<br>
   <input type="date" name="booked_from" value="">
   <br>
@@ -31,6 +31,18 @@
   <br>
   <h1 id="booking_total"></h1>
   <input type="hidden" name="total" id="total">
+  <br>
+
+  <?php 
+  if(isset($status)) {
+    if($status){
+      echo '<h3 style = "color: green;">Successful Booking!</h3>';
+    }else{
+      echo '<h3 style = "color: red;">Not Available!</h3>';
+    }
+  }
+  ?>
+
   <input type="submit" value="Book">
 </form> 
 
