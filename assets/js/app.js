@@ -39,43 +39,6 @@ $(document).ready(function(){
   
   })
 
-  // $('select[name=filter_brand]').change(function(){
-
-  //   if(!$(this).val()){
-  //     return false;
-  //   }
-  //   var brand_id = $(this).val();
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/rentals/bookings/models-by-brand",
-  //     data: {brand_id: brand_id}
-  //     }).done(function(msg) {
-  //         console.log(msg);
-  //         var models = JSON.parse(msg);
-  //         $('select[name=filter_model]').html(models.map( model => `<option value="${model.id}">${model.model_name}</option>` ));
-  //     });
-  
-  // })
-
-
-  // $('select[name=filter_model]').change(function(){
-
-  //   if(!$(this).val()){
-  //     return false;
-  //   }
-  //   var model_id = $(this).val();
-  //   $.ajax({
-  //     type: "POST",
-  //     url: "/rentals/bookings/years-by-model",
-  //     data: {model_id: model_id}
-  //     }).done(function(msg) {
-  //         console.log(msg);
-  //         var years = JSON.parse(msg);
-  //         $('select[name=filter_year]').html(years.map( year => `<option value="${year.manufacture_year}">${year.manufacture_year}</option>` ));
-  //     });
-  
-  // })
-
 
   $('select[name=car_brand]').change(function(){
 
@@ -93,6 +56,41 @@ $(document).ready(function(){
           $('select[name=car_model]').html(models.map( model => `<option value="${model.id}">${model.model_name}</option>` ));
       });
   
+  })
+
+  var filter_options = {};
+  $('.filter-item').change(function(){
+
+    var total = 0;
+    $('.booking-item').hide();
+    var value = $(this).val();
+    var option_name = $(this).attr("data-filter");
+    if(!value){
+      delete filter_options[option_name];
+    }
+    else {
+      filter_options[option_name] = value;
+    }
+
+    $(".booking-item").each(function(){
+      var booking_item = $(this);
+
+      for(var option_name in filter_options){
+        var option_value = filter_options[option_name];
+        if(!booking_item.find("td["+option_name+"='"+option_value+"']").length){
+          return;
+        }
+      }
+
+      booking_item.show();
+      total += parseInt(booking_item.find("td[data-total]").attr("data-total"))
+
+    })
+
+    $(".total-sum").html(total);
+
+
+
   })
 
 

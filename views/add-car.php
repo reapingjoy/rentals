@@ -11,13 +11,8 @@
 
 <h1>Add New Car</h1>
 
-<?php
-  // echo '<pre>';
-  // print_r($features);
-  // echo '</pre>';
-?>
 
-<form action="/rentals/cars/create" method="post">
+<form action="/rentals/cars/form" method="post">
   
   Brand:<br>
   <select name="car_brand" required>

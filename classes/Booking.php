@@ -112,10 +112,6 @@ class Booking {
 
     $booked_models = $db->execute_select([$brand_id]);
 
-    // echo '<pre>';
-    // print_r($booked_models);
-    // echo '</pre>';
-
     return $booked_models;
   }
 
@@ -133,11 +129,6 @@ class Booking {
     }
 
     $booked_model_years = $db->execute_select([$model_id]);
-
-    // echo '<pre>';
-    // print_r($booked_model_years);
-    // echo '</pre>';
-    // die();
 
     return $booked_model_years;
   }

@@ -55,7 +55,6 @@ class DB {
             return false;
         }
         $this->params_type = array($params_type);
-        //$this->params_type = array($params_type . implode($this->params_type));
 
         return true;
     }
@@ -64,7 +63,7 @@ class DB {
         if (!is_array($values)) {
             $values = array($values);
         }
-        $params = array_merge($this->params_type, $values); // we should pass array of references to stmt->bind_param, otherwise it's not functioning
+        $params = array_merge($this->params_type, $values);
         $references = array();
         foreach ($params as $key => $value) {
             $references[] = &$params[$key];

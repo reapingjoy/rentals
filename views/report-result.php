@@ -26,7 +26,7 @@
   <tr>
     <td></td>
     <td>
-      <select name="brand_filter">
+      <select name="brand_filter" data-filter="data-brand-name" class="filter-item">
         <option value="">Please Select</option>
         <?php
           foreach($brands as $brand){
@@ -36,7 +36,7 @@
       </select>
     </td>
     <td>
-      <select name="model_filter">
+      <select name="model_filter" data-filter="data-model-name" class="filter-item">
         <option value="">Please Select</option>
         <?php
           foreach($models as $model){
@@ -46,7 +46,7 @@
       </select>
     </td>
     <td>
-      <select name="year_filter">
+      <select name="year_filter" data-filter="data-year" class="filter-item">
         <option value="">Please Select</option>
         <?php
           foreach($years as $year){
@@ -56,7 +56,7 @@
       </select>
     </td>
     <td>
-    <select name="engine_filter">
+    <select name="engine_filter" data-filter="data-engine" class="filter-item">
         <option value="">Please Select</option>
         <?php
           foreach($engines as $engine){
@@ -72,19 +72,23 @@
   </tr>
   <?php
     foreach($bookings as $booking){
-    echo  '<tr>';
+    echo  '<tr class= "booking-item">';
     echo  '<td>'.$booking['booking_id'].'</td>';
-    echo  '<td>'.$booking['brand_name'].'</td>';
-    echo  '<td>'.$booking['model_name'].'</td>';
-    echo  '<td>'.$booking['manufacture_year'].'</td>';
-    echo  '<td>'.$booking['fuel_type'].' - '.$booking['transmission'].'</td>';
+    echo  '<td data-brand-name="'.$booking['brand_name'].'">'.$booking['brand_name'].'</td>';
+    echo  '<td data-model-name="'.$booking['model_name'].'">'.$booking['model_name'].'</td>';
+    echo  '<td data-year="'.$booking['manufacture_year'].'">'.$booking['manufacture_year'].'</td>';
+    echo  '<td data-engine="'.$booking['fuel_type'].' - '.$booking['transmission'].'">'.$booking['fuel_type'].' - '.$booking['transmission'].'</td>';
     echo  '<td>'.$booking['features'].'</td>';
     echo  '<td>'.$booking['booked_from'].'</td>';
     echo  '<td>'.$booking['booked_to'].'</td>';
-    echo  '<td>'.$booking['total'].'</td>';
+    echo  '<td data-total="'.$booking['total'].'">'.$booking['total'].'</td>';
     echo  '</tr>';
     }
   ?>
+  <tr>
+    <td colspan=8></td>
+    <td class="total-sum"></td>
+  </tr>
 </table>
 
 

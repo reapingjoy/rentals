@@ -20,6 +20,9 @@ switch ($request) {
 
 // Car routes
     case '/cars/form' :
+        if($_POST){
+          Car::createNewCar($_POST);  
+        }
         $brands = Car::getAllBrands();
         $engines = Car::getAllEngines();
         $features = Car::getAllFeatures();
@@ -75,11 +78,6 @@ switch ($request) {
     case '/bookings/list' :
         echo $request;
         break;
-    case '/bookings/workdays' :
-        $startDate = '2019-07-08';
-        $endDate = '2019-07-22';
-        Booking::getWorkingDays($startDate, $endDate);
-        break;
     case '/bookings/check-total' :
         $booked_from = $_POST['booked_from'];
         $booked_to = $_POST['booked_to'];
@@ -103,7 +101,6 @@ switch ($request) {
         $models = array();
         $years = array();
         $engines = array();
-        
         foreach($bookings as $booking) {
           $brands[$booking['brand_name']] = $booking['brand_name'];
           $models[$booking['model_name']] = $booking['model_name'];
