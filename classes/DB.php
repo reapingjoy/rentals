@@ -80,4 +80,17 @@ class DB {
         return true;
     }
 
+    public function begin_transaction() {
+        self::connect();
+        self::$mysqli->begin_transaction();
+    }
+
+    public function commit() {
+        return self::$mysqli->commit();
+    }
+
+    public function rollback() {
+        return self::$mysqli->rollback();
+    }
+
 }

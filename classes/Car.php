@@ -11,6 +11,9 @@ class Car {
   public function createNewCar($params) {
 
     $db = new DB();
+
+    $db->begin_transaction();
+
     if(!$db->prepare("INSERT INTO car (model_id, engine_id, manufacture_year)
     VALUES (?, ?, ?)", 'iii')){
       return false;
@@ -33,6 +36,9 @@ class Car {
       }
     }
     
+    if(!$db->commit()) {
+      return false;
+    }
     return true;
   }
 
