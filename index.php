@@ -28,10 +28,6 @@ switch ($request) {
         $features = Car::getAllFeatures();
         require __DIR__ . '/views/add-car.php';
         break;
-    // case '/cars/create' :
-    //     Car::createNewCar($_POST);
-    //     require __DIR__ . '/views/add-car.php';
-    //     break;
     case '/cars/show' :
         echo $request;
         break;
@@ -65,9 +61,6 @@ switch ($request) {
         $cars = Car::getAllCars();
         require __DIR__ . '/views/booking-form.php';
         break;
-    // case '/bookings/create' :
-    //     Booking::create($_POST['booked_from'],$_POST['booked_to'],$_POST['cars'],$_POST['total']);
-    //     break;
     case '/bookings/show' :
         echo $request;
         break;
